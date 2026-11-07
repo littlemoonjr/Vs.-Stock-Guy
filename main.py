@@ -12,6 +12,7 @@ Local_Game = moonfw.Game()
 
 
 def Start_Game():
+    Local_Game.SoundSystem.PlaySoundTrack("Lobby")
     while True:
         Local_Game.get_pygame_events()
 

@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, modules.soundhandler
 
 class Game:
     def __init__(self):
@@ -8,6 +8,7 @@ class Game:
         self.FPS = 60
 
         self.Game_State = "Main Menu"
+        self.SoundSystem = modules.soundhandler.SoundSystem()
 
 
     def get_pygame_events(self):

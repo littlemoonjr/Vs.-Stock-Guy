@@ -87,3 +87,9 @@ class Stock_Guy:
         self.Stances = {
             "Idle" : self.Folder["Idle.png"].convert_alpha(),
         }
+
+    def TakeDamage(self, Damage : int):
+        self.Health -= Damage
+    
+        if self.Health < 0:
+            self.Health = 0

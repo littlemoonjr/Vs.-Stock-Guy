@@ -42,6 +42,7 @@ class Game:
         self.Boss_Character = characters.Stock_Guy()
         
         self.Game_State = "Battle"
+        self.CurrentTurn = "You"
         self.SoundSystem.PlaySoundTrack("Battle Theme")
 
     def play_sound(self, sound_name : str):
@@ -57,15 +58,17 @@ class Game:
                     self.close_game()
 
                 if self.Game_State == "Battle":
-                    print("yes")
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_LEFT:
-                            print("left")
                             self.changewheeltarget(pygame.K_LEFT)
 
                         if event.key == pygame.K_RIGHT:
-                            print("right")
                             self.changewheeltarget(pygame.K_RIGHT)
+
+                        if event.key == pygame.K_SPACE:
+                            self.actionwheel()
+
+                        
 
     def draw(self):
         self.screen.fill((0, 0, 0))
@@ -103,7 +106,7 @@ class Game:
         if Key == pygame.K_LEFT:
             Amount = -1
 
-        Targets = ["Attack", "Act", "Run"]
+        Targets = ["Attack", "Run", "Act"]
 
         CurrentIndex = Targets.index(self.Player.Character.WheelTarget) + Amount
 
@@ -115,6 +118,21 @@ class Game:
 
         self.Player.Character.ActionWheel = pygame.transform.rotate(self.Player.Character.OriginActionWheel, CurrentIndex * 110)
         print(CurrentIndex)
+
+    def actionwheel(self):
+        print(self.Player.Character.WheelTarget)
+
+        if self.Player.Character.WheelTarget == "Run":
+            self.run()
+
+        if self.Player.Character.WheelTarget == "Act":
+            pass
+
+        if self.Player.Character.WheelTarget == "Attack":
+            pass
+
+    def run(self):
+        self.game_over()
 
         
     def game_over(self):

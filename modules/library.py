@@ -6,7 +6,6 @@ Library = {}
 
 def GetFiles(Start: str = "assets", Location: dict = Library):
     for root, dirs, filenames in os.walk(Start):
-        
         parts = os.path.normpath(root).split(os.sep)
         
         

@@ -48,12 +48,24 @@ class Player_Character:
 
         self.Icon = Library["assets"]["Characters"][CharacterName]["PFP.png"].convert_alpha()
         self.Drawing = Library["assets"]["Characters"][CharacterName]["Back View.png"].convert_alpha()
+        self.HealthIcon = Library["assets"]["UI"]["HP.png"].convert_alpha()
+
+        self.OriginActionWheel = Library["assets"]["UI"]["Action Wheel.png"].convert_alpha()
+        self.ActionWheel = self.OriginActionWheel
 
         self.Folder = Library["assets"]["Characters"][CharacterName]
 
         self.Stances = {
             "Idle" : self.Folder["Back View.png"].convert_alpha(),
         }
+        
+        self.WheelTarget = "Attack"
+
+    def TakeDamage(self, Damage : int):
+        self.Health -= Damage
+
+        if self.Health < 0:
+            self.Health = 0
 
 
 class Stock_Guy:

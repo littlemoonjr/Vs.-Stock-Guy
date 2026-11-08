@@ -10,7 +10,7 @@ def Setup(Game):
     # Inside your main loop: Draw it at 50% opacity (128) at coordinates (x=100, y=150)
 
     Game.Buttons["Attack"] = ui_handler.Button(0,150, 400, 200, Image_1, Game.gameplay)
-    Game.Buttons["Act"] = ui_handler.Button(0,325, 400, 200, Image_2, Game.gameplay)
+    Game.Buttons["Act"] = ui_handler.Button(0,375, 400, 100, Image_2, Game.play_sound, imgoffset = (0, -50))
     Game.Buttons["Run"] = ui_handler.Button(0,500, 400, 200, Image_3, Game.close_game)
 
 def Draw(Game):

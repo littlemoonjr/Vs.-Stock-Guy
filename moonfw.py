@@ -19,6 +19,8 @@ class Game:
         self.SoundSystem = modules.soundhandler.SoundSystem()
         self.Buttons = {}
 
+        self.HealthFont = pygame.font.Font('fonts/Pixelout.ttf', 75)
+
         self.main_menu()
 
     def main_menu(self):
@@ -54,6 +56,17 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.close_game()
 
+                if self.Game_State == "Battle":
+                    print("yes")
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_LEFT:
+                            print("left")
+                            self.changewheeltarget(pygame.K_LEFT)
+
+                        if event.key == pygame.K_RIGHT:
+                            print("right")
+                            self.changewheeltarget(pygame.K_RIGHT)
+
     def draw(self):
         self.screen.fill((0, 0, 0))
 
@@ -68,12 +81,44 @@ class Game:
 
 
     def draw_battle(self):
+        mousePos = pygame.mouse.get_pos()
+        mousePos_x, mousePos_y = mousePos # Get the Mouse's current position
+
         self.screen.blit(library.Library['assets']['backgrounds'][self.Background], (0,0))
         ui_handler.blit_with_opacity(self.screen, self.Boss_Character.Drawing, (0,0), 0.75)
 
 
-        self.screen.blit(self.Player.Character.Drawing, (0,0))
-        self.screen.blit(self.Player.Character.Icon, (-50,300))
+        self.screen.blit(self.Player.Character.Drawing, ((mousePos_x * 0.01),mousePos_y * 0.01))
+        self.screen.blit(self.Player.Character.Icon, (-50 + (mousePos_x * 0.041),300 + (mousePos_y * 0.021)))
+        self.screen.blit(self.Player.Character.HealthIcon, (300 + (mousePos_x * 0.041),350 + (mousePos_y * 0.021)))
+
+        PlayerHealthText = self.HealthFont.render(f'{self.Player.Character.Health}', True, 'white')
+        self.screen.blit(PlayerHealthText, (350 + (mousePos_x * 0.041),390 + (mousePos_y * 0.021)))
+
+        self.screen.blit(self.Player.Character.ActionWheel, (800 +(mousePos_x * 0.005),300 + mousePos_y * 0.001))
+
+    def changewheeltarget(self, Key):
+        Amount = 1
+
+        if Key == pygame.K_LEFT:
+            Amount = -1
+
+        Targets = ["Attack", "Act", "Run"]
+
+        CurrentIndex = Targets.index(self.Player.Character.WheelTarget) + Amount
+
+        if CurrentIndex > 1:
+            CurrentIndex = 0
+        
+        CurrentTarget = Targets[Targets.index(self.Player.Character.WheelTarget) + Amount]
+        self.Player.Character.WheelTarget = CurrentTarget
+
+        self.Player.Character.ActionWheel = pygame.transform.rotate(self.Player.Character.OriginActionWheel, CurrentIndex * 110)
+        print(CurrentIndex)
+
+        
+    def game_over(self):
+        self.main_menu()
     
 
 class Player:

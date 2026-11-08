@@ -10,6 +10,7 @@ class Game:
 
         self.Timer = pygame.time.Clock()
         self.FPS = 60
+        self.Player = Player()
 
         self.Game_State = "Main Menu"
         self.SoundSystem = modules.soundhandler.SoundSystem()
@@ -32,12 +33,14 @@ class Game:
     def play_sound(self, sound_name : str):
         self.SoundSystem.PlaySound(sound_name)
 
+    def close_game(self):
+        pygame.quit()
+        sys.exit()
 
     def get_pygame_events(self):
         for event in pygame.event.get(): 
                 if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+                    self.close_game()
 
     def draw(self):
         self.screen.fill((0, 0, 0))

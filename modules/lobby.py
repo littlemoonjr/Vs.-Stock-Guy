@@ -3,10 +3,6 @@ import modules.library as library
 import modules.uihandler as ui_handler
 
 def Setup(Game):
-    Image_1 = library.Library["assets"]["UI"]["Attack.png"].convert()
-    Image_2 = library.Library["assets"]["UI"]["Act.png"].convert()
-    Image_3 = library.Library["assets"]["UI"]["Run.png"].convert()
-
     Image_1 = library.Library["assets"]["UI"]["Attack.png"].convert_alpha()
     Image_2 = library.Library["assets"]["UI"]["Act.png"].convert_alpha()
     Image_3 = library.Library["assets"]["UI"]["Run.png"].convert_alpha()
@@ -15,7 +11,7 @@ def Setup(Game):
 
     Game.Buttons["Attack"] = ui_handler.Button(0,150, 400, 200, Image_1, Game.gameplay)
     Game.Buttons["Act"] = ui_handler.Button(0,325, 400, 200, Image_2, Game.gameplay)
-    Game.Buttons["Run"] = ui_handler.Button(0,500, 400, 200, Image_3, Game.gameplay)
+    Game.Buttons["Run"] = ui_handler.Button(0,500, 400, 200, Image_3, Game.close_game)
 
 def Draw(Game):
     mousePos = pygame.mouse.get_pos()

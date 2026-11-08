@@ -38,7 +38,7 @@ class Game:
     def gameplay(self):
         self.Buttons = {}
         self.Background = self.getrandom_background()
-        self.Player.Character = characters.Player_Character("Mr. White")
+        self.Player.Character = characters.Player_Character("Sheldon (Young)")
         self.Boss_Character = characters.Stock_Guy()
         
         self.Game_State = "Battle"
@@ -107,10 +107,10 @@ class Game:
 
         CurrentIndex = Targets.index(self.Player.Character.WheelTarget) + Amount
 
-        if CurrentIndex > 1:
+        if CurrentIndex > 2:
             CurrentIndex = 0
         
-        CurrentTarget = Targets[Targets.index(self.Player.Character.WheelTarget) + Amount]
+        CurrentTarget = Targets[CurrentIndex]
         self.Player.Character.WheelTarget = CurrentTarget
 
         self.Player.Character.ActionWheel = pygame.transform.rotate(self.Player.Character.OriginActionWheel, CurrentIndex * 110)

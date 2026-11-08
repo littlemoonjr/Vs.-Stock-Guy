@@ -13,7 +13,7 @@ Characters = {
         }
     },
 
-    "Sheldon Cooper (Young)" : {
+    "Sheldon (Young)" : {
         "Coins" : 0,
         "Health" : 25,
 

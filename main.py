@@ -11,11 +11,11 @@ pygame.display.set_caption("VS. Stock Guy")
 Local_Game = moonfw.Game()
 
 
-def Start_Game():
-    Local_Game.SoundSystem.PlaySoundTrack("Lobby")
+def Start_Game():    
     while True:
         Local_Game.get_pygame_events()
 
+        Local_Game.draw()
         pygame.display.flip()
 
 

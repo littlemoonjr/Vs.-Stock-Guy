@@ -129,7 +129,7 @@ class Game:
             pass
 
         if self.Player.Character.WheelTarget == "Attack":
-            pass
+            characters.The_Ultimate_Weapon(self.Player.Character, self.Boss_Character)
 
     def run(self):
         self.game_over()

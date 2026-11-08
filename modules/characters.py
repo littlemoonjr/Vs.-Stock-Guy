@@ -8,7 +8,7 @@ Characters = {
         "Attacks" : {
             "THE ONE WHO KNOCKS" : {
                 "Type" : "Normal",
-                "CD" : 0
+                "Turns" : 0
             },
         }
     },
@@ -20,12 +20,12 @@ Characters = {
         "Attacks" : {
             "The Ultimate Weapon" : {
                 "Type" : "Normal",
-                "CD" : 1
+                "Turns" : 1
             },
 
             "you dawg" : {
                 "Type" : "Normal",
-                "CD" : 0
+                "Turns" : 0
             }
         }
     }
@@ -75,10 +75,11 @@ class Stock_Guy:
         self.MaxHealth = 100
 
         self.Drawing = Library["assets"]["Stock Guy"]["Idle.png"].convert_alpha()
+
         self.Attacks = {
             "Stock Market Crash" : {
                 "Type" : "Normal",
-                "CD" : 0
+                "Turns" : 0
             }
         }
 
@@ -93,3 +94,25 @@ class Stock_Guy:
     
         if self.Health < 0:
             self.Health = 0
+
+    
+
+def The_Ultimate_Weapon(Attacker : Player_Character, Defender : Stock_Guy):
+    Defender.TakeDamage(8)
+
+def youdawg(Attacker : Player_Character, Defender : Stock_Guy):
+    Defender.TakeDamage(8)
+
+def theonewhoknocks(Attacker : Player_Character, Defender : Stock_Guy):
+    Defender.TakeDamage(8)
+
+def stockmarket(Attacker : Stock_Guy, Defender : Player_Character):
+    Defender.TakeDamage(8)
+
+
+Attacks = {
+    "The Ultimate Weapon" : The_Ultimate_Weapon,
+    "you dawg" : youdawg,
+    "THE ONE WHO KNOCKS" : theonewhoknocks,
+    "Stock Market Crash" : stockmarket,
+}

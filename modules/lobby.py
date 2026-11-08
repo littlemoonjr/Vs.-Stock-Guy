@@ -17,6 +17,7 @@ def Draw(Game):
     mousePos = pygame.mouse.get_pos()
     mousePos_x, mousePos_y = mousePos # Get the Mouse's current position
 
-        # Move the Main Menu's Background Image to the current image that is available & draw it
+    # Move the Main Menu's Background Image to the current image that is available & draw it
+
     Game.screen.blit(library.Library['assets']['UI']['Lobby Background.png'], (0 + (mousePos_x * 0.007)**1.2, 0 + (mousePos_y * 0.007)**1.52))
     Game.screen.blit(library.Library['assets']['UI']['title.png'], (0 + (mousePos_x * 0.007), 0 + (mousePos_y * 0.007)))

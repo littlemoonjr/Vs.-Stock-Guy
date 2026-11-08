@@ -89,6 +89,8 @@ def blit_with_opacity(target_surface, image, position, opacity):
     """
     Blits a PNG image onto a target surface with an adjustable overall opacity.
     """
+
+    opacity *= 255
     # 1. Create a temporary surface with the same dimensions as the image
     temp_surface = pygame.Surface(image.get_size(), pygame.SRCALPHA)
     
